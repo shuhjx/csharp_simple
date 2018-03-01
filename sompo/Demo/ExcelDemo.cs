@@ -62,5 +62,43 @@ namespace sompo.Demo
             ExcelUtil.GetExcelWorkbook(strFileName, action);
         }
         
+        public static void TestEditExcel()
+        {
+            string excelFile = @"D:\BaiduNetdiskDownload\#137959\20180125_1つの具体例を作る\test.xlsm";
+            Action<Excel.Application, Excel.Workbook> action = (Excel.Application app, Excel.Workbook wb) =>
+            {
+                Excel.Sheets sheets = wb.Worksheets;
+                Excel.Worksheet sheet = sheets[1];
+                sheet.Cells[1, 1] = "WWWWWWWWWWWWW";
+                Excel.Range r = sheet.Cells[1, 1];
+                
+                Log.Println("(1,1)的值是： "+ r.Value);
+                Log.Println("(1,1)的值2是： " + r.Value2);
+
+                sheet.Cells[2, 2] = "2018/01/01";
+                r = sheet.Cells[2, 2];
+
+                Log.Println("(2,2)的值是： " + r.Value);
+                Log.Println("(2,2)的值2是： " + r.Value2);
+
+                r = sheet.get_Range("c3");//选取单元格
+                r.Merge(true);//合并单元格   
+                r.Value2 = 99999999.9999999; //设置单元格内文本   
+                r.Font.Name = "宋体";//设置字体   
+                r.Font.Size = 18;//字体大小   
+                r.Font.Bold = true;//加粗显示   
+                r.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;//水平居中   
+                r.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;//垂直居中   
+                r.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;//设置边框   
+                r.Borders.Weight = Excel.XlBorderWeight.xlMedium;//边框常规粗细  
+                //r.Interior.Color = Color.FromArgb(224, 224, 224);//
+                //r.Interior.Color = System.Drawing.ColorTranslator.FromHtml("#FF34B3");
+
+                Log.Println("(3,3)的值是： " + r.Value);
+                Log.Println("(3,3)的值2是： " + r.Value2);
+                wb.Save();
+            };
+            ExcelUtil.GetExcelWorkbook(excelFile, action);
+        }
     }
 }

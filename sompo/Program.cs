@@ -15,8 +15,9 @@ namespace sompo
             Log.Println("2：执行OrmLiteDemo.TestOrmLiteInsert()");
             Log.Println("3：执行OrmLiteDemo.TestOrmLiteUpdate()"); 
             Log.Println("4：执行ExcelDemo.TestCallMacro()");
-            Log.Println("5：执行ExcelDemo.TestToPDF()");
-            Log.Println("6：执行FileDemo.TestCopyDir()");
+            Log.Println("5：执行ExcelDemo.TestToPDF()"); 
+                Log.Println("6：执行ExcelDemo.TestEditExcel()"); 
+            Log.Println("7：执行FileDemo.TestCopyDir()");
             Log.Println("exit：退出");
 
             while (true)
@@ -42,6 +43,9 @@ namespace sompo
                         ExcelDemo.TestToPDF();
                         break;
                     case "6":
+                        ExcelDemo.TestEditExcel();
+                        break;
+                    case "7":
                         FileDemo.TestCopyDir();
                         break;
                     case "exit":
